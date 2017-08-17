@@ -1,0 +1,58 @@
+fastlane_version "2.47.0"
+default_platform :ios
+
+podspec_path = "TungstenCrypto.podspec"
+
+before_all do  
+  cocoapods(repo_update: true, use_bundle_exec: true)
+  pod_version = version_get_podspec
+  if git_tag_exists(tag: pod_version)
+    UI.user_error!("Version #{pod_version} already exists! Make sure to update!")
+  end
+end
+
+lane :clean do
+  sh "rm -rf ../build"
+end
+
+def application_target
+    "TungstenCrypto"
+end
+
+
+desc "Lint pod by checking podspec"
+lane :lint do
+  pod_lib_lint(
+    allow_warnings:true,
+    sources: [
+      "https://github.com/CocoaPods/Specs"
+    ]
+  )
+end
+
+desc "Publish pod to YND private podspec repo"
+lane :publish do
+  add_git_tag(tag: version_get_podspec)
+  push_git_tags
+
+  pod_push(
+    path: podspec_path,
+    allow_warnings:true
+  )
+end
+
+lane :unit_test do
+    reset_simulator_contents(
+        ios: [ "iPhone 5s" ]
+    )
+    
+    scan(
+        scheme: 'TungstenCrypto',
+        derived_data_path: 'build',
+        code_coverage: true,
+        output_types: 'junit,html,json-compilation-database',
+        output_directory: "build/reports_output",
+        skip_build: false,
+        clean: false
+    )
+end

@@ -1,0 +1,28 @@
+PODS:
+  - GRKOpenSSLFramework (1.0.2.11.2)
+  - libCommonCrypto (0.1.1)
+  - ProtocolBuffers (1.9.11)
+  - TungstenLibsodium (1.0.0)
+
+DEPENDENCIES:
+  - GRKOpenSSLFramework (= 1.0.2.11.2)
+  - libCommonCrypto (~> 0.1)
+  - ProtocolBuffers (~> 1.9.8)
+  - TungstenLibsodium (~> 1.0.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GRKOpenSSLFramework
+    - libCommonCrypto
+    - ProtocolBuffers
+    - TungstenLibsodium
+
+SPEC CHECKSUMS:
+  GRKOpenSSLFramework: 39829d7b30f95133301f44514d4d7c070961e9f8
+  libCommonCrypto: 8bc2f53375ef9815ddd9dd663e110e1cced41747
+  ProtocolBuffers: d509225eb2ea43d9582a59e94348fcf86e2abd65
+  TungstenLibsodium: 21f673b22734e29258286a8f9d9312acaa9d1aca
+
+PODFILE CHECKSUM: 6a9c75c3464b81b7da3976e4fcd76d9717a72220
+
+COCOAPODS: 1.5.0
